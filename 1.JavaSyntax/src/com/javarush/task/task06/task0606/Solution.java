@@ -1,7 +1,8 @@
 package com.javarush.task.task06.task0606;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.Scanner;
+import java.io.InputStreamReader;
 
 /* 
 Чётные и нечётные циферки
@@ -14,8 +15,19 @@ public class Solution {
 
     public static void main(String[] args) throws IOException {
         //напишите тут ваш код
-        Scanner scanner = new Scanner(System.in);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String temp = reader.readLine();
 
+        for (int i = 0; i < temp.length(); i++) {
+            int a = Integer.parseInt(String.valueOf(temp.charAt(i)));
+            if (a % 2 == 0) {
+                even++;
+            } else {
+                odd++;
+            }
+        }
+
+        System.out.printf("Even: %d Odd: %d", even, odd);
     }
 }
 
