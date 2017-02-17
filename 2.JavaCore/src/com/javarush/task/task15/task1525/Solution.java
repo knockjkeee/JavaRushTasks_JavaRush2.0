@@ -1,6 +1,8 @@
 package com.javarush.task.task15.task1525;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,26 +15,23 @@ public class Solution {
 
     static {
         try {
-            InputStream in = new FileInputStream(Statics.FILE_NAME);
-            int count = in.available();
-            char temp;
-                while (count != -1) {
-                    temp = (char) count;
-                    System.out.print(temp);
-//                    lines.add(String.valueOf(temp));
-                    count = in.read();
-                }
+            String data;
+            BufferedReader in;
+            in = new BufferedReader(new InputStreamReader(new FileInputStream(Statics.FILE_NAME), "UTF-8"));
+            int temp = -1;
+            while ((data = in.readLine()) != null) {
+                lines.add(data);
+            }
             in.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
+
     public static void main(String[] args) {
         System.out.println(lines);
     }
 }
-
 
 
 //        1. Инициализируй переменную Statics.FILE_NAME полным путем к файлу с данными, который содержит несколько строк.
