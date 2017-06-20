@@ -4,9 +4,39 @@ package com.javarush.task.task18.task1821;
 Встречаемость символов
 */
 
-public class Solution {
-    public static void main(String[] args) {
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Map;
+import java.util.TreeMap;
 
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        FileInputStream inputStream = new FileInputStream(args[0]);
+        byte[] symbol = new byte[inputStream.available()];
+        Map<Character, Integer> map = new TreeMap<>();
+
+        while (inputStream.available() > 0) {
+            inputStream.read(symbol);
+        }
+
+        Arrays.sort(symbol);
+        map.put((char) symbol[0], 0);
+        for (byte b : symbol) {
+            if (!map.containsKey((char) b)) {
+                map.put((char) b, 1);
+            } else {
+                for (Map.Entry<Character, Integer> entry : map.entrySet()) {
+                    if (entry.getKey() == (char) b) {
+                        entry.setValue(entry.getValue() + 1);
+                    }
+                }
+            }
+        }
+        for (Map.Entry<Character, Integer> entry : map.entrySet()) {
+            System.out.println(entry.getKey() + " " + entry.getValue());
+        }
+        inputStream.close();
     }
 }
 
