@@ -1,5 +1,9 @@
 package com.javarush.task.task18.task1823;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,21 +14,77 @@ import java.util.Map;
 public class Solution {
     public static Map<String, Integer> resultMap = new HashMap<String, Integer>();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String temp = reader.readLine();
+        while (!temp.equals("exit")) {
+            ReadThread read = new ReadThread(temp);
+            read.start();
+            temp = reader.readLine();
+        }
+
+        for (Map.Entry<String, Integer> entry : resultMap.entrySet()) {
+            System.out.println(entry.getKey() + " - " + entry.getValue());
+        }
 
     }
 
     public static class ReadThread extends Thread {
-        public ReadThread(String fileName) {
-            //implement constructor body
+        public String getFileName() {
+            return fileName;
         }
+
+        String fileName;
+
+        public ReadThread(String fileName) throws IOException {
+            //implement constructor body
+            this.fileName = fileName;
+        }
+
+        @Override
+        public void run() {
+            try {
+                FileInputStream stream = new FileInputStream(fileName);
+                byte[] temp = new byte[stream.available()];
+
+                while (stream.available() > 0) {
+                    stream.read(temp);
+                }
+                byte result = 0;
+                int countStart = 0;
+                int countFinish = 0;
+
+                for (int i = 0; i < temp.length; i++) {
+                    for (int j = 0; j < temp.length; j++) {
+                        if (i != j) {
+                            if (temp[i] == temp[j]) {
+                                countStart++;
+                            }
+                        }
+                    }
+                    if (countFinish < countStart) {
+                        countFinish = countStart;
+                        result = temp[i];
+                        countStart = 0;
+                    } else {
+                        countStart = 0;
+                    }
+                }
+                resultMap.put(getFileName(), Integer.valueOf(result));
+                stream.close();
+//                interrupt();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         // implement file reading here - реализуйте чтение из файла тут
     }
 }
 
 
 //         Нити и байты
-//        Читайте с консоли имена файлов, пока не будет введено слово «exit«.
+//        Читайте с консоли имена файлов, пока не будет введено слово «exit«.$
 //        Передайте имя файла в нить ReadThread.
 //        Нить ReadThread должна найти байт, который встречается в файле максимальное число раз, и добавить его в словарь resultMap,
 //        где параметр String — это имя файла, параметр Integer — это искомый байт.
