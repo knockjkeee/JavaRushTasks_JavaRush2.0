@@ -20,9 +20,9 @@ public class Solution {
 
     public static void main(String[] args) {
         //start here - начни тут
-
-//        String param = args[0];
-        String param = "-u Миронов ж 15/04/1990";
+        String param = args[0];
+//        String param = "-c Миронов ж 15/04/1990";
+//        String param = "-u 1 Миронов ж 15/04/1990";
 //        String param = "-d 1";
 //        String param = "-i 0";
         SimpleDateFormat formatDate = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
@@ -146,12 +146,12 @@ public class Solution {
         }
 
 
-        for (Person person : allPeople) {
-            if (person.getSex() == Sex.FEMALE) {
-                System.out.println(person.getName() + " " + "ж" + " " + formatDate.format(person.getBirthDay()));
-            } else if (person.getSex() == Sex.MALE) {
-                System.out.println(person.getName() + " " + "м" + " " + formatDate.format(person.getBirthDay()));
-            }
-        }
+//        for (Person person : allPeople) {
+//            if (person.getSex() == Sex.FEMALE) {
+//                System.out.println(person.getName() + " " + "ж" + " " + formatDate.format(person.getBirthDay()));
+//            } else if (person.getSex() == Sex.MALE) {
+//                System.out.println(person.getName() + " " + "м" + " " + formatDate.format(person.getBirthDay()));
+//            }
+//        }
     }
 }
