@@ -23,7 +23,7 @@ public class Solution {
         }
 
         public void printMsg() {
-            Thread t = Thread.currentThread();//присвой переменной t текущую нить
+            Thread t = Thread.currentThread();//присвой переменной targer текущую нить
             String name = t.getName();
             System.out.println("name=" + name);
             //add sleep here - добавь sleep тут
