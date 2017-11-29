@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>Patterns</groupId>
-    <artifactId>Patterns</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <groupId>com.task</groupId>
+    <artifactId>loggerMessage</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
     <build>
         <plugins>
             <plugin>
@@ -19,15 +19,21 @@
             </plugin>
         </plugins>
     </build>
-    <dependency>
-        <groupId>org.apache.log4j</groupId>
-        <artifactId>log4j-api</artifactId>
-        <version>1.2.17</version>
-    </dependency>
-    <dependency>
-        <groupId>org.apache.log4j</groupId>
-        <artifactId>log4j-core</artifactId>
-        <version>1.2.17</version>
-    </dependency>
+    <packaging>jar</packaging>
 
+    <!--<name>loggerMessage</name>-->
+    <!--<url>http://maven.apache.org</url>-->
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+
+    </dependencies>
 </project>
