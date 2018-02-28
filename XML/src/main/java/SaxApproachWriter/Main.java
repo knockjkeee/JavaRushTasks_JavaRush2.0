@@ -2,8 +2,8 @@ package SaxApproachWriter;
 
 
 import javax.xml.stream.XMLOutputFactory;
-import javax.xml.stream.XMLStreamWriter;
 import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamWriter;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
